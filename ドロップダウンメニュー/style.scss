@@ -1,0 +1,49 @@
+.dropDown {
+  max-width: 500px;
+}
+
+.dropDown__contents {
+
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+.dropDown__head {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  background-color: #ccc;
+}
+
+.dropDown__item a {
+  padding: 10px;
+  display: block;
+  background-color: #aaa;
+}
+
+.dropDown a {
+  transition: .3s;
+}
+
+.dropDown__list {
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.dropDown__head {
+
+  &::after {
+    content: ">";
+    transform: rotate(90deg);
+    transition: .3s;
+  }
+
+  &.active::after {
+    content: ">";
+    transform: rotate(-90deg) translateY(-3px);
+  }
+}

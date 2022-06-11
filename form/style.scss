@@ -1,0 +1,165 @@
+/* form
+--------------------------------------------------------------*/
+.section__contact {
+  background: #EEEEEE;
+  padding: 60px 0;
+}
+
+.contact__head {
+  text-align: center;
+}
+
+.contact__form {
+  width: 600px;
+  margin: 0 auto;
+}
+
+.contact__form-row {
+  display: flex;
+
+  & + & {
+    margin-top: 20px;
+  }
+}
+
+.contact__form-label {
+  width: 200px;
+}
+
+.contact__form-input {
+  width: 100%;
+
+
+  [type="text"],
+  [type="email"] {
+
+    box-shadow: 2px 2px 6px #00000029;
+    border: none;
+    background: #fff;
+    padding: 8px 16px;
+    appearance: none;
+    border-radius: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    width: 100%;
+  }
+
+  textarea {
+    box-shadow: 2px 2px 6px #00000029;
+    border: none;
+    background: #fff;
+    padding: 8px 16px;
+    appearance: none;
+    border-radius: 0;
+    color: inherit;
+    font-family: inherit;
+    font-size: 14px;
+    width: 100%;
+    height: 100px;
+    resize: vertical;
+  }
+}
+
+.contact__radio-wrap {
+  border: 1px solid #fff;
+  border-radius: 4px;
+  display: inline-flex;
+  box-shadow: 5px 6px 15px rgba(96, 96, 96, 0.16);
+}
+
+.contact__radio {
+  position: relative;
+}
+
+.contact__radio-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+
+  &:checked + .contact__radio-parts {
+    background: $color-main;
+    color: #fff;
+    border-radius: 1;
+  }
+
+  &:focus + .contact__radio-parts {
+    outline: -webkit-focus-ring-color auto 1px;
+  }
+}
+
+.contact__radio-parts {
+  display: block;
+  background: #fff;
+  color: $color-text;
+  height: 38px;
+  line-height: 38px;
+  width: 80px;
+  text-align: center;
+}
+
+/* privacy
+--------------------------------------------------------------*/
+.contact__checkbox {
+
+}
+
+.contact__privacy {
+  position: relative;
+}
+
+.contact__privacy-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+
+  &:checked + .contact__privacy-parts {
+
+    &::after {
+      display: block;
+    }
+  }
+
+  
+}
+
+.contact__privacy-parts {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  border: 1px solid $color-text;
+  position: relative;
+  top: 6px;
+
+  &::after {
+    position: absolute;
+    top: 0;
+    left: 6px;
+    content: "";
+    border: 2px solid #AA998A;
+    width: 8px;
+    height: 15px;
+    border-top: none;
+    border-left: none;
+    transform: rotate(45deg);
+    display: none;
+    z-index: 1;
+  }
+}
+
+
+.contact__form-button {
+
+  button {
+
+  }
+}
+
+.contact-message {
+  text-align: center;
+  margin-top: 60px;
+  display: none;
+
+}

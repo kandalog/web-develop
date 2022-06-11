@@ -1,0 +1,408 @@
+
+
+検索
+ノート作成 ⌘ + N
+
+form書き方　一例
+
+
+
+1
+<section class="section__contact">
+2
+    <h2 class="util__head contact__head">お問い合わせ</h2>
+3
+    <div class="contact__form">
+4
+      <form id="js-form" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSfA8o1vC-6jawwD4S2oVz-NlZJGJg0FZNTa0D8ujEy6dQ1sxw/formResponse" class="contact-form">
+5
+        <dl class="contact__form-dl">
+6
+​
+7
+          <div class="contact__form-row">
+8
+            <dt class="contact__form-label"><label for="">お名前</label></dt>
+9
+            <dd class="contact__form-input"><input name="entry.330632790" type="text"></dd>
+10
+          </div>
+11
+​
+12
+          <div class="contact__form-row">
+13
+            <dt class="contact__form-label"><label for="">メールアドレス</label></dt>
+14
+            <dd class="contact__form-input"><input name="emailAddress" type="email"></dd>
+15
+          </div>
+16
+          
+17
+          <div class="contact__form-row">
+18
+            <dt class="contact__form-label"><label for="">問い合わせ種別</label></dt>
+19
+            <dd class="contact__form-input">
+20
+              <select name="entry.1140207913" id="">
+21
+                <option value="------">------</option>
+22
+                <option value="webサイト制作">webサイト制作</option>
+23
+                <option value="コーディング">コーディング</option>
+24
+              </select>
+25
+            </dd>
+26
+          </div>
+27
+​
+28
+          <div class="contact__form-row">
+29
+            <dt class="contact__form-label">
+30
+              <label for="">法人/個人の選択</label>
+31
+            </dt>
+32
+            <dd class="contact__form-input">
+33
+              <div class="contact__radio-wrap">
+34
+​
+35
+                <label class="contact__radio">
+36
+                  <input name="entry.1031379786" type="radio" value="法人" class="contact__radio-input" checked>
+37
+                  <span class="contact__radio-parts">法人</span>
+38
+                </label>
+39
+                
+40
+                <label class="contact__radio">
+41
+                  <input name="entry.1031379786" type="radio" value="個人" class="contact__radio-input">
+42
+                  <span class="contact__radio-parts">個人</span>
+43
+                </label>
+44
+​
+45
+              </div>
+46
+            </dd>
+47
+          </div>
+48
+​
+49
+          <div class="contact__form-row">
+50
+            <dt class="contact__form-label"><label for="">お問合せ内容</label></dt>
+51
+            <dd class="contact__form-input"><textarea name="entry.2007737335" id=""></textarea></dd>
+
+1
+/* form
+2
+--------------------------------------------------------------*/
+3
+.section__contact {
+4
+  background: #EEEEEE;
+5
+  padding: 60px 0;
+6
+}
+7
+​
+8
+.contact__head {
+9
+  text-align: center;
+10
+}
+11
+​
+12
+.contact__form {
+13
+  width: 600px;
+14
+  margin: 0 auto;
+15
+}
+16
+​
+17
+.contact__form-row {
+18
+  display: flex;
+19
+​
+20
+  & + & {
+21
+    margin-top: 20px;
+22
+  }
+23
+}
+24
+​
+25
+.contact__form-label {
+26
+  width: 200px;
+27
+}
+28
+​
+29
+.contact__form-input {
+30
+  width: 100%;
+31
+​
+32
+​
+33
+  [type="text"],
+34
+  [type="email"] {
+35
+​
+36
+    box-shadow: 2px 2px 6px #00000029;
+37
+    border: none;
+38
+    background: #fff;
+39
+    padding: 8px 16px;
+40
+    appearance: none;
+41
+    border-radius: 0;
+42
+    color: inherit;
+43
+    font-family: inherit;
+44
+    font-size: 14px;
+45
+    width: 100%;
+46
+  }
+47
+​
+48
+  textarea {
+49
+    box-shadow: 2px 2px 6px #00000029;
+50
+    border: none;
+51
+    background: #fff;
+52
+    padding: 8px 16px;
+
+1
+// google form
+2
+let $form = $('#js-form')
+3
+​
+4
+$form.submit(function(e) { 
+5
+  $.ajax({ 
+6
+   url: $form.attr('action'),
+7
+   data: $form.serialize(), 
+8
+   type: "POST", 
+9
+   dataType: "xml", 
+10
+   statusCode: { 
+11
+      0: function() { 
+12
+        //送信に成功したときの処理 
+13
+        $form.slideUp();
+14
+        $('#js-success').slideDown()
+15
+      }, 
+16
+      200: function() { 
+17
+        //送信に失敗したときの処理 
+18
+        $form.slideUp();
+19
+        $('#js-error').slideDown()
+20
+      }
+21
+    } 
+22
+  });
+23
+  return false; 
+24
+}); 
+25
+​
+26
+// formの入力確認
+27
+let $submit = $('#js-submit');
+28
+$('#js-form input, #js-form textarea').on('change', function() {
+29
+  if(
+30
+    $('#js-form input[type="text"]').val() !== "" &&
+31
+    $('#js-form input[type="email"]').val() !== "" &&
+32
+    $('#js-form input[name="entry.1779445944"]').prop('checked') === true
+33
+  ) {
+34
+    // 全て入力された時
+35
+    $submit.prop('disabled', false)
+36
+    $submit.addClass('-active') 
+37
+    } else {
+38
+    // 入力されていない時
+39
+    $submit.prop('disabled', true)
+40
+    $submit.removeClass('-active')
+41
+  }
+42
+})
+
+1
+radioボックスの実装方法
+2
+​
+3
+​
+4
+​
+5
+.contact-form__radio {
+6
+  margin-top: 32px;
+7
+​
+8
+  @include mq('sp') {
+9
+    margin-top: 26px;
+10
+  }
+11
+  
+12
+​
+13
+  [type="radio"] {
+14
+    display: none;
+15
+  }
+16
+​
+17
+  span {
+18
+    display: inline-block;
+19
+    padding-left: 26px;
+20
+    position: relative;
+21
+    margin-right: 36px;
+22
+    
+23
+    @include mq('sp') {
+24
+      margin-bottom: 8px;
+25
+      margin-right: 20px;
+26
+    }
+27
+​
+28
+​
+29
+    &::before {
+30
+      content: "";
+31
+      width: 20px;
+32
+      height: 20px;
+33
+      border: 1px solid #707070;
+34
+      position: absolute;
+35
+      left: 0;
+36
+      top: 50%;
+37
+      transform: translateY(-50%);
+38
+      background-color: #fff;
+39
+      border-radius: 50%;
+40
+    }
+41
+​
+42
+    &::after {
+43
+      content: "";
+44
+      width: 10px;
+45
+      height: 10px;
+46
+      background: $color-main;
+47
+      position: absolute;
+48
+      left: 5px;
+49
+      top: 50%;
+50
+      transform: translateY(-50%);
+51
+      border-radius: 50%;
+52
+      display: none;
+Select Syntax... Indent: space size: 2 Wrap Line: on 
+100%

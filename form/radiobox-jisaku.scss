@@ -1,0 +1,64 @@
+radioボックスの実装方法
+
+
+
+.contact-form__radio {
+  margin-top: 32px;
+
+  @include mq('sp') {
+    margin-top: 26px;
+  }
+  
+
+  [type="radio"] {
+    display: none;
+  }
+
+  span {
+    display: inline-block;
+    padding-left: 26px;
+    position: relative;
+    margin-right: 36px;
+    
+    @include mq('sp') {
+      margin-bottom: 8px;
+      margin-right: 20px;
+    }
+
+
+    &::before {
+      content: "";
+      width: 20px;
+      height: 20px;
+      border: 1px solid #707070;
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: #fff;
+      border-radius: 50%;
+    }
+
+    &::after {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: $color-main;
+      position: absolute;
+      left: 5px;
+      top: 50%;
+      transform: translateY(-50%);
+      border-radius: 50%;
+      display: none;
+    }
+
+  }
+
+  [type="radio"]:checked + span {
+    
+    &::after {
+      display: block;
+    }
+  }
+
+}

@@ -1,0 +1,95 @@
+/* qa
+--------------------------------------------------------------*/
+
+.qa__item-list {
+  margin: 80px auto 0;
+  width: 901px;
+  max-width: 100%;
+}
+
+.qa__item {
+  &:not(:nth-of-type(1)) {
+    margin-top: 24px;
+  }
+  border: 1px solid $color-main;
+}
+
+.qa-box__q {
+  padding: 12px 56px;
+  color: #fff;
+  background: #3F51B5;
+  font-weight: bold;
+  position: relative;
+
+  &::before {
+    content: "Q";
+    position: absolute;
+    top: 12px;
+    left: 20px;
+  }
+}
+
+.qa-box__icon {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 14px;
+
+  &.active {
+    .qa-box__bar2 {
+      transform: rotate(90deg);
+    }
+  }
+}
+
+.qa-box__bar1 {
+  width: 14px;
+  height: 2px;
+  background: #fff;
+  border-radius: 20px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
+}
+
+.qa-box__bar2 {
+  width: 2px;
+  height: 14px;
+  background: #fff;
+  border-radius: 20px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: 0.3s;
+}
+
+.qa-box__a {
+  background: #fff;
+  font-weight: bold;
+  color: $color-main;
+  line-height: (24/16);
+  padding: 16px 30px 16px 20px;
+  position: relative;
+  display: none;
+
+  &.active {
+    display: block;
+  }
+}
+
+.qa-box__content {
+  position: relative;
+  padding-left: 35px;
+  font-weight: bold;
+
+  &::before {
+    content: "A";
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
